@@ -32,9 +32,7 @@ const { SubMenu } = Menu
 const Index = ({ costum, getOrders, taom, getTaom }) => {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  //   const [data, setData] = useState([])
   const [id, setId] = useState(null)
-
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const showModal = () => {
@@ -148,7 +146,10 @@ const Index = ({ costum, getOrders, taom, getTaom }) => {
               width={1000}
             >
               {taom.length > 0 ? (
-                <OrdersTable taom={taom} />
+                <OrdersTable
+                  taom={taom}
+                  orders={costum.filter((e) => e.Id == id)}
+                />
               ) : (
                 <center style={{ padding: '200px' }}>
                   <Spin />
