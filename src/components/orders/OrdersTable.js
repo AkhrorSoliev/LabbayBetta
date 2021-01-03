@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table, Row, Col, Timeline } from 'antd'
+import Moment from 'react-moment'
 
 const columns = [
   {
@@ -29,7 +30,7 @@ const columns = [
   },
 ]
 
-function OrdersTable({ taom, Id }) {
+function OrdersTable({ taom, Id, orders }) {
   return (
     <div>
       <Row style={{ margin: '10px' }}>
@@ -46,20 +47,95 @@ function OrdersTable({ taom, Id }) {
             </h2>
           </div>
           <Timeline>
-            <Timeline.Item color="green">Hell\</Timeline.Item>
-            <Timeline.Item color="green">Hello2</Timeline.Item>
-            <Timeline.Item color="red">
-              <p>Solve initial network problems 1</p>
-              <p>Solve initial network problems 2</p>
-              <p>Solve initial network problems 3 2015-09-01</p>
+            <Timeline.Item color="green">
+              <div
+                style={{
+                  backgroundColor: '#79d70f',
+                  padding: '5px',
+                  borderRadius: '5px',
+                }}
+              >
+                <h3 style={{ color: 'white', margin: 'auto' }}>
+                  Buyurtma vaqti
+                </h3>
+                <h4 style={{ color: 'white', margin: 'auto' }}>
+                  <Moment format="MMMM Do YYYY, h:mm:ss a">
+                    {orders[0].time_create}
+                  </Moment>
+                </h4>
+              </div>
+            </Timeline.Item>
+            <Timeline.Item color="#1b6ca8">
+              <div
+                style={{
+                  backgroundColor: '#1b6ca8',
+                  padding: '5px',
+                  borderRadius: '5px    ',
+                }}
+              >
+                <h3 style={{ color: 'white', margin: 'auto' }}>
+                  Oshxona qabul qilish vaqti
+                </h3>
+                <h4 style={{ color: 'white', margin: 'auto' }}>
+                  <Moment format="MMMM Do YYYY, h:mm:ss a">
+                    {orders[0].time_bolim}
+                  </Moment>
+                </h4>
+              </div>
+            </Timeline.Item>
+            <Timeline.Item color="#ff5200">
+              <div
+                style={{
+                  backgroundColor: '#ff5200',
+                  padding: '5px',
+                  borderRadius: '5px    ',
+                }}
+              >
+                <h3 style={{ color: 'white', margin: 'auto' }}>
+                  Tayyor bo'lgan vaqti
+                </h3>
+                <h4 style={{ color: 'white', margin: 'auto' }}>
+                  <Moment format="MMMM Do YYYY, h:mm:ss a">
+                    {orders[0].time_tayyor}
+                  </Moment>
+                </h4>
+              </div>
             </Timeline.Item>
             <Timeline.Item>
-              <p>Technical testing 1</p>
-              <p>Technical testing 2</p>
-              <p>Technical testing 3 2015-09-01</p>
+              <div
+                style={{
+                  backgroundColor: '#58b4ae',
+                  padding: '5px',
+                  borderRadius: '5px    ',
+                }}
+              >
+                <h3 style={{ color: 'white', margin: 'auto' }}>
+                  Kuryer olgan vaqti
+                </h3>
+                <h4 style={{ color: 'white', margin: 'auto' }}>
+                  <Moment format="MMMM Do YYYY, h:mm:ss a">
+                    {orders[0].time_kuryer}
+                  </Moment>
+                </h4>
+              </div>
+            </Timeline.Item>
+            <Timeline.Item color="#1b1b2f">
+              <div
+                style={{
+                  backgroundColor: '#1b1b2f',
+                  padding: '5px',
+                  borderRadius: '5px    ',
+                }}
+              >
+                <h3 style={{ color: 'white', margin: 'auto' }}>Finish</h3>
+                <h4 style={{ color: 'white', margin: 'auto' }}>
+                  <Moment format="MMMM Do YYYY, h:mm:ss a">
+                    {orders[0].time_finish}
+                  </Moment>
+                </h4>
+              </div>
             </Timeline.Item>
           </Timeline>
-          ,
         </Col>
         <Col span={8} style={{ padding: '0 20px' }}>
           <h2 style={{ backgroundColor: '#cae4db', textAlign: 'center' }}>
