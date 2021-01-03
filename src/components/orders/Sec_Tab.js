@@ -33,14 +33,21 @@ const Index = ({ costum, getOrders, taom, getTaom }) => {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   //   const [data, setData] = useState([])
+  const [id, setId] = useState(null)
 
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const showModal = () => {
-    getTaom(3)
+    getTaom(id)
     setIsModalVisible(true)
   }
-
+  const onClickRow = (record) => {
+    return {
+      onClick: () => {
+        setId(record.Id)
+      },
+    }
+  }
   const handleOk = () => {
     setIsModalVisible(false)
   }
@@ -127,28 +134,30 @@ const Index = ({ costum, getOrders, taom, getTaom }) => {
     {
       title: 'Action',
       key: 'action',
-      render: (text, record) => (
-        <Space size="small">
-          <Button type="primary" onClick={showModal}>
-            Detail
-          </Button>
-          <Modal
-            title="Basic Modal"
-            visible={isModalVisible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            width={1000}
-          >
-            {taom.length > 0 ? (
-              <OrdersTable />
-            ) : (
-              <center style={{ padding: '200px' }}>
-                <Spin />
-              </center>
-            )}
-          </Modal>
-        </Space>
-      ),
+      render: (text, record) => {
+        return (
+          <Space size="small">
+            <Button type="primary" onClick={showModal}>
+              Detail
+            </Button>
+            <Modal
+              title="Basic Modal"
+              visible={isModalVisible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+              width={1000}
+            >
+              {taom.length > 0 ? (
+                <OrdersTable taom={taom} />
+              ) : (
+                <center style={{ padding: '200px' }}>
+                  <Spin />
+                </center>
+              )}
+            </Modal>
+          </Space>
+        )
+      },
     },
   ]
 
@@ -202,7 +211,12 @@ const Index = ({ costum, getOrders, taom, getTaom }) => {
         </Row>
         <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
           <div style={{ width: '65%' }}>
-            <Table columns={columns} dataSource={costum} size="small" />
+            <Table
+              columns={columns}
+              dataSource={costum}
+              size="small"
+              onRow={onClickRow}
+            />
           </div>
           <div style={{ width: '35%' }}>
             <Map_side></Map_side>
