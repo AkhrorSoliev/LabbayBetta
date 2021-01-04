@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import parse from 'html-react-parser'
 import { Tooltip } from 'antd'
 import { connect } from 'react-redux'
@@ -28,7 +28,9 @@ const Kurs = ({ info }) => (
 
 const Osh = ({ info }) => (
   <Tooltip
-    title={parse(`${info.nomi}<br><a href='tel:${info.tel_nomer}'></a>`)}
+    title={parse(
+      `${info.e_nomi}<br><a href='tel:${info.e_tel}'>${info.e_tel}</a>`,
+    )}
   >
     <span style={{ cursor: 'pointer' }}>
       <img src="/osh.svg" alt="" width="30px"></img>
@@ -67,8 +69,8 @@ const SimpleMap = ({ kurs, taom, id, orders }) => {
           ? kurs.map((k) => <Kurs lat={k.lat} lng={k.lan} info={k}></Kurs>)
           : null}
 
-        {taom
-          ? taom.map((k) => <Osh lat={k.lat} lng={k.lan} info={k}></Osh>)
+        {user
+          ? user.map((e) => <Osh lat={e.lat} lng={e.lan} info={e}></Osh>)
           : null}
 
         {user
