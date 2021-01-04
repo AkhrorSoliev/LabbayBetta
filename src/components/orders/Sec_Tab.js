@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { getOrders, getTaom } from '../../actions/userActions'
+import { getOrders, getTaom, getKur } from '../../actions/userActions'
 import { FileExcelOutlined, SearchOutlined } from '@ant-design/icons'
 import {
   Button,
@@ -29,12 +29,14 @@ const onSearch = (value) => console.log(value)
 
 const { SubMenu } = Menu
 
-const Index = ({ costum, getOrders, taom, getTaom }) => {
+const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const [id, setId] = useState(null)
   const [isModalVisible, setIsModalVisible] = useState(false)
-
+  useEffect(() => {
+    getKur()
+  }, [])
   const showModal = () => {
     getTaom(id)
     setIsModalVisible(true)
@@ -43,6 +45,7 @@ const Index = ({ costum, getOrders, taom, getTaom }) => {
     return {
       onClick: () => {
         setId(record.Id)
+        console.log('salom')
       },
     }
   }
@@ -138,24 +141,6 @@ const Index = ({ costum, getOrders, taom, getTaom }) => {
             <Button type="primary" onClick={showModal}>
               Detail
             </Button>
-            <Modal
-              title="Basic Modal"
-              visible={isModalVisible}
-              onOk={handleOk}
-              onCancel={handleCancel}
-              width={1000}
-            >
-              {taom.length > 0 ? (
-                <OrdersTable
-                  taom={taom}
-                  orders={costum.filter((e) => e.Id == id)}
-                />
-              ) : (
-                <center style={{ padding: '200px' }}>
-                  <Spin />
-                </center>
-              )}
-            </Modal>
           </Space>
         )
       },
@@ -220,10 +205,27 @@ const Index = ({ costum, getOrders, taom, getTaom }) => {
             />
           </div>
           <div style={{ width: '35%' }}>
-            <Map_side></Map_side>
+            {id ? <Map_side id={id}></Map_side> : null}
           </div>
         </div>
       </div>
+      <Space size="small">
+        <Modal
+          title="Basic Modal"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          width={1000}
+        >
+          {taom.length > 0 ? (
+            <OrdersTable taom={taom} orders={costum} id={id} />
+          ) : (
+            <center style={{ padding: '200px' }}>
+              <Spin />
+            </center>
+          )}
+        </Modal>
+      </Space>
     </div>
   )
 }
@@ -233,4 +235,4 @@ const mapStateToProps = (state) => {
     taom: state.labbay.taom,
   }
 }
-export default connect(mapStateToProps, { getOrders, getTaom })(Index)
+export default connect(mapStateToProps, { getOrders, getTaom, getKur })(Index)

@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Map from './Map'
-const Map_side = ({ id }) => {
+import getLocation from './getLocation'
+const Map_side = ({ id, lat, lng }) => {
   return (
     <div
       style={{
@@ -10,9 +12,18 @@ const Map_side = ({ id }) => {
         margin: '5px',
       }}
     >
+      <div>
+        <getLocation />
+      </div>
       <Map id={id}></Map>
     </div>
   )
 }
 
-export default Map_side
+const mapStateToProps = (state) => {
+  return {
+    orders: state.labbay.orders,
+  }
+}
+
+export default connect(mapStateToProps)(Map_side)
