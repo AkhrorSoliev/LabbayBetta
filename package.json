@@ -30,6 +30,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "request": "^2.88.2",
+    "reqwest": "^2.0.5",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

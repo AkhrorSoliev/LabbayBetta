@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getOrders, getTaom, getKur } from '../../actions/userActions'
-import { FileExcelOutlined, SearchOutlined } from '@ant-design/icons'
+import { FileExcelOutlined, SearchOutlined, LoadingOutlined } from '@ant-design/icons'
 import {
   Button,
   Modal,
@@ -17,6 +17,8 @@ import {
 } from 'antd'
 import OrdersTable from './OrdersTable'
 import HistoryData from './HistoryData'
+
+const antIcon = <LoadingOutlined style={{ fontSize: 50, marginTop: '300px', marginLeft: '180px', }} spin />;
 
 const { Option } = Select
 
@@ -210,7 +212,7 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
             />
           </div>
           <div style={{ width: '35%' }}>
-            {id ? <HistoryData id={id}></HistoryData> : null}
+            {id ? <HistoryData id={id}></HistoryData> : <Spin indicator={antIcon} />}
           </div>
         </div>
       </div>

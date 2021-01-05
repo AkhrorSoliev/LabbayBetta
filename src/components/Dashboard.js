@@ -21,6 +21,7 @@ import {
 import logo from './logo2.svg'
 import LogOut from './LogOut.svg'
 import HistoryTable from './orders/HistoryTable'
+import Users from './orders/Users'
 
 const { SubMenu } = Menu
 
@@ -90,8 +91,11 @@ function MiniDrawer({ getOrders, loading, user }) {
                 <Menu.Item key="5">Canceelled Deliveries</Menu.Item>
               </Menu.ItemGroup>
             </SubMenu>
-            <Menu.Item key="3" icon={<FieldTimeOutlined />}>
+            <Menu.Item key="2" icon={<FieldTimeOutlined />}>
               <Link to="/oshxona">Oshxona</Link>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<TeamOutlined /> }>
+              <Link to="/users">Users</Link>
             </Menu.Item>
           </Menu>
         </div>
@@ -145,6 +149,9 @@ function MiniDrawer({ getOrders, loading, user }) {
             </Route>
             <Route exact path="/history">
               <HistoryTable></HistoryTable>
+            </Route>
+            <Route exact path="/users">
+              <Users></Users>
             </Route>
             <Route component={PageNotFound}>
               <PageNotFound></PageNotFound>

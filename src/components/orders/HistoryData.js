@@ -2,11 +2,10 @@ import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import GetLocation from './getLocation'
 // import Phone from '../telephone.svg'
-import { Card, Button, Modal, Spin } from 'antd';
+import { Card, Button, Modal } from 'antd';
 import Location from '../placeholder.svg'
-import { UserOutlined, HomeOutlined, PhoneOutlined, LoadingOutlined } from '@ant-design/icons';
+import { UserOutlined, HomeOutlined, PhoneOutlined } from '@ant-design/icons';
 import DetailModal from './DetailModal'
-
 
 
 function HistoryData({ id, orders }) {
