@@ -15,8 +15,8 @@ import {
   Menu,
   Spin,
 } from 'antd'
-import Map_side from '../orders/Map_side'
 import OrdersTable from './OrdersTable'
+import HistoryData from './HistoryData'
 
 const { Option } = Select
 
@@ -210,7 +210,7 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
             />
           </div>
           <div style={{ width: '35%' }}>
-            <Map_side id={id}></Map_side>
+            {id ? <HistoryData id={id}></HistoryData> : null}
           </div>
         </div>
       </div>
