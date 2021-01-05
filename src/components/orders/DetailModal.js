@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Table } from 'antd';
+
+import { Table, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 
 const columns = [
@@ -44,8 +48,8 @@ function DetailModal ( id, orders ) {
     console.log(orders)
     
     return (
-        <div>
-            <Table columns={columns} dataSource={orders[0]} size="small" />
+        <div> 
+            {id ? <Table columns={columns} dataSource={orders[0]} size="small" /> : <Spin indicator={antIcon} />}
         </div>
     )
 }
