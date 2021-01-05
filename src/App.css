@@ -69,7 +69,13 @@ a {
   background-color: rgba(0, 0, 0, .1) !important;
 }
 
-.ant-modal-header {
-  background-color: #6380b6 !important;
+.clickRowStyl {
+  background-color:#00b4ed !important
+}
 
+.ant-table-tbody.clickRowStyl:hover td {
+  background-color: #00b4ed !important
+}
+.rowCursor {
+ cursor: pointer;
 }

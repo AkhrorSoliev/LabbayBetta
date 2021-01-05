@@ -34,7 +34,6 @@ const columns = [
 ]
 
 function OrdersTable({ taom, orders, id }) {
-  console.log(id)
   const order = orders.filter((e) => e.Id == id)
   return (
     <div>

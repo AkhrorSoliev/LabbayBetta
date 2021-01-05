@@ -70,7 +70,7 @@ const SimpleMap = ({ kurs, taom, id, orders }) => {
           : null}
 
         {user
-          ? user.map((e) => <Osh lat={e.lat} lng={e.lan} info={e}></Osh>)
+          ? user.map((e) => <Osh lat={e.e_lat} lng={e.e_lan} info={e}></Osh>)
           : null}
 
         {user
