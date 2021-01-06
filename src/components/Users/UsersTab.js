@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Table } from 'antd'
+import { Table, Button, Select, Row, Col, Input } from 'antd'
+import { FileExcelOutlined } from '@ant-design/icons'
+import UsersInfo from './UsersInfo'
 import reqwest from 'reqwest'
-import { Button, Select, Row, Col, Input } from 'antd'
-import { FileExcelOutlined, SearchOutlined } from '@ant-design/icons'
 
 const { Search } = Input
 const onSearch = (value) => console.log(value)
@@ -11,24 +11,28 @@ const { Option } = Select
 
 const columns = [
   {
+    title: 'Id',
+    dataIndex: 'id',
+  },
+  {
     title: 'Name',
     dataIndex: 'name',
-    sorter: true,
-    render: (name) => `${name.first} ${name.last}`,
-    width: '20%',
   },
   {
-    title: 'Gender',
-    dataIndex: 'gender',
-    filters: [
-      { text: 'Male', value: 'male' },
-      { text: 'Female', value: 'female' },
-    ],
-    width: '20%',
+    title: 'Phone',
+    dataIndex: 'phone',
   },
   {
-    title: 'Email',
-    dataIndex: 'email',
+    title: 'Orders',
+    dataIndex: 'orders',
+  },
+  {
+    title: 'Country',
+    dataIndex: 'orders',
+  },
+  {
+    title: 'Wallet',
+    dataIndex: 'orders',
   },
 ]
 
@@ -38,7 +42,7 @@ const getRandomuserParams = (params) => ({
   ...params,
 })
 
-class Users extends Component {
+class UsersTab extends Component {
   state = {
     data: [],
     pagination: {
@@ -83,7 +87,6 @@ class Users extends Component {
       })
     })
   }
-
   render() {
     const { data, pagination, loading } = this.state
     return (
@@ -135,6 +138,9 @@ class Users extends Component {
                 onChange={this.handleTableChange}
               />
             </div>
+            <div style={{ width: '35px', marginLeft: '5px' }}>
+              <UsersInfo />
+            </div>
           </div>
         </div>
       </div>
@@ -142,4 +148,4 @@ class Users extends Component {
   }
 }
 
-export default Users
+export default UsersTab
