@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
-import { Table, Button, Select, Row, Col, Input } from 'antd'
+import { Table, Button, Select, Row, Col, Input, Tabs } from 'antd'
 import { FileExcelOutlined } from '@ant-design/icons'
 import UsersInfo from './UsersInfo'
 import reqwest from 'reqwest'
+
+const { TabPane } = Tabs
+
+function callback(key) {
+  console.log(key)
+}
 
 const { Search } = Input
 const onSearch = (value) => console.log(value)
@@ -11,28 +17,25 @@ const { Option } = Select
 
 const columns = [
   {
-    title: 'Id',
-    dataIndex: 'id',
-  },
-  {
     title: 'Name',
     dataIndex: 'name',
   },
   {
-    title: 'Phone',
-    dataIndex: 'phone',
+    title: 'Gender',
+    dataIndex: 'gender',
+    filters: [
+      { text: 'Male', value: 'male' },
+      { text: 'Female', value: 'female' },
+    ],
+    width: '20%',
   },
   {
-    title: 'Orders',
-    dataIndex: 'orders',
+    title: 'Email',
+    dataIndex: 'email',
   },
   {
-    title: 'Country',
-    dataIndex: 'orders',
-  },
-  {
-    title: 'Wallet',
-    dataIndex: 'orders',
+    title: 'Email',
+    dataIndex: 'email',
   },
 ]
 
@@ -90,15 +93,22 @@ class UsersTab extends Component {
   render() {
     const { data, pagination, loading } = this.state
     return (
-      <div style={{ width: '100%', padding: '25px' }}>
-        <div style={{ width: '100%' }}>
+      <div style={{ width: '100%' }}>
+        <div
+          style={{
+            width: '100%',
+            backgroundColor: '#e6e6e6',
+            padding: '15px',
+            boxShadow: ' 5px 2px 3px 1px rgba(0, 0, 0, 0.5)',
+          }}
+        >
           <Row>
             <Col span={4}>
               <p style={{ margin: '0 auto' }}>Max Buyurtma</p>
               <Input style={{ width: '180px' }} />
             </Col>
             <Col span={4}>
-              <p style={{ margin: '0 auto' }}>Max Buyurtma</p>
+              <p style={{ margin: '0 auto' }}>Min Buyurtma</p>
               <Input style={{ width: '180px' }} />
             </Col>
             <Col span={8}>
@@ -127,20 +137,42 @@ class UsersTab extends Component {
               </div>
             </Col>
           </Row>
-          <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
-            <div style={{ width: '65%' }}>
-              <Table
-                columns={columns}
-                rowKey={(record) => record.login.uuid}
-                dataSource={data}
-                pagination={pagination}
-                loading={loading}
-                onChange={this.handleTableChange}
-              />
-            </div>
-            <div style={{ width: '35px', marginLeft: '5px' }}>
-              <UsersInfo />
-            </div>
+        </div>
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            paddingTop: '5px',
+          }}
+        >
+          <div style={{ width: '65%', padding: '5px' }}>
+            <Tabs defaultActiveKey="1" onChange={callback}>
+              <TabPane tab="Users" key="1">
+                <Table
+                  columns={columns}
+                  rowKey={(record) => record.login.uuid}
+                  dataSource={data}
+                  pagination={pagination}
+                  loading={loading}
+                  onChange={this.handleTableChange}
+                />
+              </TabPane>
+              <TabPane tab="Block Users" key="2">
+                <div style={{ width: '65%' }}>
+                  <Table
+                    columns={columns}
+                    rowKey={(record) => record.login.uuid}
+                    dataSource={data}
+                    pagination={pagination}
+                    loading={loading}
+                    onChange={this.handleTableChange}
+                  />
+                </div>
+              </TabPane>
+            </Tabs>
+          </div>
+          <div style={{ width: '35%', marginTop: '50px', marginLeft: '5px' }}>
+            <UsersInfo />
           </div>
         </div>
       </div>

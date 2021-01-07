@@ -78,7 +78,7 @@ function MiniDrawer({ getOrders, loading, user }) {
             </Menu.Item>
             <SubMenu key="sub1" icon={<TeamOutlined />} title="Orders">
               <Menu.ItemGroup>
-                <Menu.Item key="1">
+                <Menu.Item key="2">
                   <Link to="/orders">Orders</Link>
                 </Menu.Item>
                 <Menu.Item key="3">
@@ -90,10 +90,10 @@ function MiniDrawer({ getOrders, loading, user }) {
                 <Menu.Item key="5">Canceelled Deliveries</Menu.Item>
               </Menu.ItemGroup>
             </SubMenu>
-            <Menu.Item key="2" icon={<FieldTimeOutlined />}>
+            <Menu.Item key="6" icon={<FieldTimeOutlined />}>
               <Link to="/oshxona">Oshxona</Link>
             </Menu.Item>
-            <Menu.Item key="3" icon={<TeamOutlined />}>
+            <Menu.Item key="7" icon={<TeamOutlined />}>
               <Link to="/users">Users</Link>
             </Menu.Item>
           </Menu>
@@ -135,7 +135,7 @@ function MiniDrawer({ getOrders, loading, user }) {
             <Route path="/kuriers/:id">
               <KurierCos></KurierCos>
             </Route>
-            <Route exact path="/oshxona">
+            <Route exact path="/o">
               <div style={{ display: 'flex' }}>
                 <Oshxona></Oshxona>
               </div>

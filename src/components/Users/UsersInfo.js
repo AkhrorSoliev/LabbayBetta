@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {
   BellOutlined,
+  MailOutlined,
+  PlusOutlined,
   StopOutlined,
   SwapRightOutlined,
   YuqueOutlined,
@@ -44,10 +46,10 @@ class UsersInfo extends Component {
             }}
           >
             <Button style={{ width: '80px', backgroundColor: '#899857' }}>
-              <SwapRightOutlined style={{ color: 'white' }} />
+              <PlusOutlined style={{ color: 'white' }} />
             </Button>
             <Button style={{ width: '80px', backgroundColor: '#899857' }}>
-              <YuqueOutlined style={{ color: 'white' }} />
+              <MailOutlined style={{ color: 'white' }} />
             </Button>
             <Button style={{ width: '80px', backgroundColor: '#899857' }}>
               <BellOutlined style={{ color: 'white' }} />

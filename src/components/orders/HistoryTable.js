@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getOrders, getTaom, getKur } from '../../actions/userActions'
-import { FileExcelOutlined, SearchOutlined, LoadingOutlined } from '@ant-design/icons'
+import {
+  FileExcelOutlined,
+  SearchOutlined,
+  LoadingOutlined,
+} from '@ant-design/icons'
 import {
   Button,
   Modal,
@@ -18,7 +22,12 @@ import {
 import OrdersTable from './OrdersTable'
 import HistoryData from './HistoryData'
 
-const antIcon = <LoadingOutlined style={{ fontSize: 50, marginTop: '300px', marginLeft: '180px', }} spin />;
+const antIcon = (
+  <LoadingOutlined
+    style={{ fontSize: 50, marginTop: '300px', marginLeft: '180px' }}
+    spin
+  />
+)
 
 const { Option } = Select
 
@@ -158,23 +167,42 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
   }
 
   return (
-    <div style={{ width: '100%', padding: '25px' }}>
-      <div style={{ width: '100%' }}>
+    <div style={{ width: '100%' }}>
+      <div
+        style={{
+          width: '100%',
+          backgroundColor: '#e6e6e6',
+          padding: '15px',
+          boxShadow: ' 5px 2px 3px 1px rgba(0, 0, 0, 0.5)',
+        }}
+      >
         <Row>
           <Col span={4}>
+            <h4 style={{ margin: '0 auto' }}>Data Filter</h4>
+            <Search
+              placeholder="input search text"
+              onSearch={onSearch}
+              enterButton
+              style={{ width: '180px' }}
+            />
+          </Col>
+          <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
+            <Search
+              placeholder="input search text"
+              onSearch={onSearch}
+              enterButton
+              style={{ width: '180px' }}
+            />
+          </Col>
+          <Col span={4}>
+            <h4 style={{ margin: '0 auto' }}>Status</h4>
             <Select defaultValue="lucy" style={{ width: '180px' }} loading>
               <Option value="lucy">Lucy</Option>
             </Select>
           </Col>
           <Col span={4}>
-            <Search
-              placeholder="input search text"
-              onSearch={onSearch}
-              enterButton
-              style={{ width: '180px' }}
-            />
-          </Col>
-          <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
             <Search
               style={{ width: '180px' }}
               placeholder="input search text"
@@ -183,39 +211,38 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
             />
           </Col>
           <Col span={4}>
-            <Search
-              style={{ width: '180px' }}
-              placeholder="input search text"
-              onSearch={onSearch}
-              enterButton
-            />
-          </Col>
-          <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
             <Button type="primary" danger style={{ width: '180px' }}>
               <FileExcelOutlined />
             </Button>
           </Col>
           <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
             <Button type="primary" danger style={{ width: '180px' }}>
               <SearchOutlined />
             </Button>
           </Col>
         </Row>
-        <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
-          <div style={{ width: '65%' }}>
-            <Table
-              columns={columns}
-              dataSource={costum}
-              size="small"
-              onRow={onClickRow}
-              rowClassName={setRowClassName}
-            />
-          </div>
-          <div style={{ width: '35%' }}>
-            {id ? <HistoryData id={id}></HistoryData> : <Spin indicator={antIcon} />}
-          </div>
+      </div>
+      <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
+        <div style={{ width: '65%' }}>
+          <Table
+            columns={columns}
+            dataSource={costum}
+            size="small"
+            onRow={onClickRow}
+            rowClassName={setRowClassName}
+          />
+        </div>
+        <div style={{ width: '35%' }}>
+          {id ? (
+            <HistoryData id={id}></HistoryData>
+          ) : (
+            <Spin indicator={antIcon} />
+          )}
         </div>
       </div>
+
       <Space size="small">
         <Modal
           title="Basic Modal"
