@@ -156,15 +156,24 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
   }
 
   return (
-    <div style={{ width: '100%', padding: '25px' }}>
-      <div style={{ width: '100%' }}>
+    <div style={{ width: '100%' }}>
+      <div
+        style={{
+          width: '100%',
+          backgroundColor: '#e6e6e6',
+          padding: '15px',
+          boxShadow: ' 5px 2px 3px 1px rgba(0, 0, 0, 0.5)',
+        }}
+      >
         <Row>
           <Col span={4}>
+            <h4 style={{ margin: '0 auto' }}>Qidirish</h4>
             <Select defaultValue="lucy" style={{ width: '180px' }} loading>
               <Option value="lucy">Lucy</Option>
             </Select>
           </Col>
           <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
             <Search
               placeholder="input search text"
               onSearch={onSearch}
@@ -173,47 +182,46 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
             />
           </Col>
           <Col span={4}>
-            <Search
-              style={{ width: '180px' }}
-              placeholder="input search text"
-              onSearch={onSearch}
-              enterButton
-            />
+            <h4 style={{ margin: '0 auto' }}>Status</h4>
+            <Select defaultValue="lucy" style={{ width: '180px' }} loading>
+              <Option value="lucy">Lucy</Option>
+            </Select>
           </Col>
           <Col span={4}>
-            <Search
-              style={{ width: '180px' }}
-              placeholder="input search text"
-              onSearch={onSearch}
-              enterButton
-            />
+            <h4 style={{ margin: '0 auto' }}>Payment</h4>
+            <Select defaultValue="lucy" style={{ width: '180px' }} loading>
+              <Option value="lucy">Lucy</Option>
+            </Select>
           </Col>
           <Col span={4}>
+            <h4 style={{ margin: '0 auto' }}>Export</h4>
             <Button type="primary" danger style={{ width: '180px' }}>
               <FileExcelOutlined />
             </Button>
           </Col>
           <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
             <Button type="primary" danger style={{ width: '180px' }}>
               <SearchOutlined />
             </Button>
           </Col>
         </Row>
-        <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
-          <div style={{ width: '65%' }}>
-            <Table
-              columns={columns}
-              dataSource={costum}
-              size="small"
-              onRow={onClickRow}
-              rowClassName={setRowClassName}
-            />
-          </div>
-          <div style={{ width: '35%' }}>
-            <Map_side id={id}></Map_side>
-          </div>
+      </div>
+      <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
+        <div style={{ width: '65%' }}>
+          <Table
+            columns={columns}
+            dataSource={costum}
+            size="small"
+            onRow={onClickRow}
+            rowClassName={setRowClassName}
+          />
+        </div>
+        <div style={{ width: '34%' }}>
+          <Map_side id={id}></Map_side>
         </div>
       </div>
+
       <Space size="small">
         <Modal
           title="Basic Modal"
