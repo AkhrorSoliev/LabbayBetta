@@ -1,118 +1,183 @@
-import React, {useEffect, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import {connect} from 'react-redux'
-const columns = [
-  { id: 'time_create', label: 'Sana', minWidth: 170 },
-  { id: 'Id', label: 'Id', minWidth: 100 },
-  {
-    id: 'u_ismi',
-    label: 'Iste\'molchi',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'u_fam',
-    label: 'Address',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'element_nomi',
-    label: 'Summa',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-];
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { getOrders, getTaom, getKur } from '../../actions/userActions'
+import { FileExcelOutlined, SearchOutlined } from '@ant-design/icons'
+import {
+  Button,
+  Modal,
+  Select,
+  Input,
+  Row,
+  Col,
+  Table,
+  Tag,
+  Space,
+  Menu,
+  Spin,
+} from 'antd'
+import Map_side from '../orders/Map_side'
+import OrdersTable from './OrdersTable'
 
+const { Option } = Select
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
+function handleChange(value) {
+  console.log(`selected ${value}`)
+}
 
-function StickyHeadTable({orders}) {
-  const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [data, setData] = useState([])
-  useEffect(()=> {
-    const fil = orders.filter(or => or.status == 5);
-    setData(fil) 
-  }, [orders])
+const { Search } = Input
+const onSearch = (value) => console.log(value)
+
+const { SubMenu } = Menu
+
+const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [id, setId] = useState(null)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  useEffect(() => {
+    getKur()
+  }, [])
+  const showModal = () => {
+    getTaom(id)
+    setIsModalVisible(true)
+  }
+  const onClickRow = (record) => {
+    return {
+      onClick: () => {
+        setId(record.Id)
+        console.log('salom')
+      },
+    }
+  }
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
+  }
+
+  useEffect(() => {
+    getOrders()
+  }, [])
   const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+    setPage(newPage)
+  }
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+    setRowsPerPage(+event.target.value)
+    setPage(0)
+  }
+
+  const columns = [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'u_id',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'User ID',
+      dataIndex: 'userid',
+      key: 'user_ism',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Berkor qilgan',
+      dataIndex: 'bekor_qilingan',
+      key: 'assignedData',
+    },
+    {
+      title: 'Narxi',
+      dataIndex: 'narxi',
+      key: 'narxi',
+    },
+    {
+      title: 'Vaqti',
+      dataIndex: 'vaqti',
+      key: 'vaqti',
+    },
+    {
+      title: 'Bekor qilish sababi',
+      dataIndex: 'noData',
+      key: 'noData',
+    },
+  ]
+
+  const Index = { costum, getOrders }
+
+  const routeChange = () => {}
+
+  const setRowClassName = (record) => {
+    return record.id === id ? 'clickRowStyl' : 'rowCursor'
+  }
 
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data ?  data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-              return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={()=> alert("sad")}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {value}
-                        </TableCell>
-                        );
-                  })}
-                </TableRow>
-              );
-            }): null}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={data.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
-  );
+    <div style={{ width: '100%' }}>
+      <div
+        style={{
+          width: '100%',
+          backgroundColor: '#e6e6e6',
+          padding: '15px',
+          boxShadow: ' 5px 2px 3px 1px rgba(0, 0, 0, 0.5)',
+        }}
+      >
+        <Row>
+          <Col span={4}>
+            <h4 style={{ margin: '0 auto' }}>Qidirish</h4>
+            <Select defaultValue="lucy" style={{ width: '180px' }} loading>
+              <Option value="lucy">Lucy</Option>
+            </Select>
+          </Col>
+          <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
+            <Search
+              placeholder="input search text"
+              onSearch={onSearch}
+              enterButton
+              style={{ width: '180px' }}
+            />
+          </Col>
+          <Col span={4}>
+            <h4 style={{ margin: '0 auto' }}>Statys</h4>
+            <Select defaultValue="lucy" style={{ width: '180px' }} loading>
+              <Option value="lucy">Lucy</Option>
+            </Select>
+          </Col>
+          <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
+            <Search
+              style={{ width: '180px' }}
+              placeholder="input search text"
+              onSearch={onSearch}
+              enterButton
+            />
+          </Col>
+          <Col span={4}>
+            <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
+            <Button type="primary" danger style={{ width: '180px' }}>
+              Apply
+            </Button>
+          </Col>
+        </Row>
+      </div>
+      <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
+        <div style={{ width: '98%' }}>
+          <Table
+            columns={columns}
+            dataSource={costum}
+            size="small"
+            onRow={onClickRow}
+            rowClassName={setRowClassName}
+          />
+        </div>
+      </div>
+    </div>
+  )
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    orders: state.labbay.orders
+    costum: state.labbay.orders,
+    taom: state.labbay.taom,
   }
 }
-
-export default connect(mapStateToProps, {})(StickyHeadTable)
+export default connect(mapStateToProps, { getOrders, getTaom, getKur })(Index)

@@ -40,13 +40,11 @@ function OrdersTable({ taom, orders, id }) {
       <div
         style={{
           width: '100%',
-          backgroundColor: '#e6e6e6',
           padding: '15px',
-          boxShadow: ' 5px 2px 3px 1px rgba(0, 0, 0, 0.5)',
         }}
       >
-        <Row style={{ margin: '10px' }}>
-          <Col span={8} style={{ padding: '0 20px' }}>
+        <Row>
+          <Col span={8}>
             <h2 style={{ backgroundColor: '#cae4db', textAlign: 'center' }}>
               ORDERS DETAILS
             </h2>
