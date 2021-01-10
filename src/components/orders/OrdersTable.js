@@ -44,11 +44,16 @@ function OrdersTable({ taom, orders, id }) {
         }}
       >
         <Row>
-          <Col span={8}>
+          <Col span={8} style={{ padding: '0 20px' }}>
             <h2 style={{ backgroundColor: '#cae4db', textAlign: 'center' }}>
               ORDERS DETAILS
             </h2>
-            <Table columns={columns} dataSource={taom} size="small" />
+            <Table
+              columns={columns}
+              dataSource={taom}
+              size="small"
+              style={{ margineft: '25px' }}
+            />
           </Col>
           <Col span={8} style={{ padding: '0 20px' }}>
             <div>
