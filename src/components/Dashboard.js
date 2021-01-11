@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Order_item from './orders/Order_item'
 import Costumers from './Costumers/Costumer'
 import Kuriers from './Kurier/Kuriers'
-import Oshxona from './Oshxona/Oshxona'
+import Oshxonaa from './Oshxonaa/Oshxona'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Orders from './Orders'
 import { getOrders, logOut } from '../actions/userActions'
@@ -16,6 +16,7 @@ import { Menu } from 'antd'
 import {
   FieldTimeOutlined,
   HomeOutlined,
+  SkinOutlined,
   TeamOutlined,
 } from '@ant-design/icons'
 import logo from './logo2.svg'
@@ -23,6 +24,7 @@ import LogOut from './LogOut.svg'
 import HistoryTable from './orders/HistoryTable'
 import Users from '../components/Users/Users'
 import Bekor from './orders/Bekor'
+import Curiers from './Curiermans/Curiers'
 
 const { SubMenu } = Menu
 
@@ -99,6 +101,9 @@ function MiniDrawer({ getOrders, loading, user }) {
             <Menu.Item key="7" icon={<TeamOutlined />}>
               <Link to="/users">Users</Link>
             </Menu.Item>
+            <Menu.Item key="8" icon={<SkinOutlined />}>
+              <Link to="/curiers">Curiermans</Link>
+            </Menu.Item>
           </Menu>
         </div>
 
@@ -138,9 +143,9 @@ function MiniDrawer({ getOrders, loading, user }) {
             <Route path="/kuriers/:id">
               <KurierCos></KurierCos>
             </Route>
-            <Route exact path="/o">
+            <Route exact path="/oshxona">
               <div style={{ display: 'flex' }}>
-                <Oshxona></Oshxona>
+                <Oshxonaa></Oshxonaa>
               </div>
             </Route>
             <Route path="/oshxona/:id">
@@ -157,6 +162,9 @@ function MiniDrawer({ getOrders, loading, user }) {
             </Route>
             <Route exact path="/users">
               <Users></Users>
+            </Route>
+            <Route exact path="/curiers">
+              <Curiers></Curiers>
             </Route>
             <Route component={PageNotFound}>
               <PageNotFound></PageNotFound>
