@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Table, Button, Select, Row, Col, Input, Tabs } from 'antd'
 import { FileExcelOutlined } from '@ant-design/icons'
-import CuriersInfo from './CuriersInfo'
+import StoriesInfo from './StoriesInfo'
 import reqwest from 'reqwest'
 
 const { TabPane } = Tabs
@@ -45,7 +45,7 @@ const getRandomuserParams = (params) => ({
   ...params,
 })
 
-class CurierTab extends Component {
+class StoriesTab extends Component {
   state = {
     data: [],
     pagination: {
@@ -147,7 +147,7 @@ class CurierTab extends Component {
         >
           <div style={{ width: '65%', padding: '5px' }}>
             <Tabs defaultActiveKey="1" onChange={callback}>
-              <TabPane tab="Tasdiqlanganlar" key="1">
+              <TabPane tab="Oshxonalar" key="1">
                 <Table
                   columns={columns}
                   rowKey={(record) => record.login.uuid}
@@ -169,7 +169,7 @@ class CurierTab extends Component {
                   />
                 </div>
               </TabPane>
-              <TabPane tab="Onlinelar" key="3">
+              <TabPane tab="Ishni yakunlaganlar" key="3">
                 <div style={{ width: '65%' }}>
                   <Table
                     columns={columns}
@@ -184,7 +184,7 @@ class CurierTab extends Component {
             </Tabs>
           </div>
           <div style={{ width: '35%', marginTop: '50px', marginLeft: '5px' }}>
-            <CuriersInfo />
+            <StoriesInfo />
           </div>
         </div>
       </div>
@@ -192,4 +192,4 @@ class CurierTab extends Component {
   }
 }
 
-export default CurierTab
+export default StoriesTab
