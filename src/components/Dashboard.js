@@ -16,6 +16,7 @@ import { Menu } from 'antd'
 import {
   FieldTimeOutlined,
   HomeOutlined,
+  ShopOutlined,
   SkinOutlined,
   TeamOutlined,
 } from '@ant-design/icons'
@@ -25,6 +26,7 @@ import HistoryTable from './orders/HistoryTable'
 import Users from '../components/Users/Users'
 import Bekor from './orders/Bekor'
 import Curiers from './Curiermans/Curiers'
+import Stories from './Stories/Stories'
 
 const { SubMenu } = Menu
 
@@ -72,13 +74,10 @@ function MiniDrawer({ getOrders, loading, user }) {
           <Menu
             onClick={handleClick1}
             style={{ width: 256 }}
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={['2']}
             defaultOpenKeys={['sub1']}
             mode="inline"
           >
-            <Menu.Item key="1" icon={<HomeOutlined />}>
-              <Link to="/">Home</Link>
-            </Menu.Item>
             <SubMenu key="sub1" icon={<TeamOutlined />} title="Orders">
               <Menu.ItemGroup>
                 <Menu.Item key="2">
@@ -104,6 +103,9 @@ function MiniDrawer({ getOrders, loading, user }) {
             <Menu.Item key="8" icon={<SkinOutlined />}>
               <Link to="/curiers">Curiermans</Link>
             </Menu.Item>
+            <Menu.Item key="9" icon={<ShopOutlined />}>
+              <Link to="/stories">Stores</Link>
+            </Menu.Item>
           </Menu>
         </div>
 
@@ -126,7 +128,7 @@ function MiniDrawer({ getOrders, loading, user }) {
               <Orders />
             </Route>
             <Route exact path="/">
-              Home
+              <Orders />
             </Route>
             <Route path="/orders/:id">
               <Order_item></Order_item>
@@ -165,6 +167,9 @@ function MiniDrawer({ getOrders, loading, user }) {
             </Route>
             <Route exact path="/curiers">
               <Curiers></Curiers>
+            </Route>
+            <Route exact path="/stories">
+              <Stories></Stories>
             </Route>
             <Route component={PageNotFound}>
               <PageNotFound></PageNotFound>

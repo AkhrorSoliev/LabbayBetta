@@ -44,7 +44,7 @@ function OrdersTable({ taom, orders, id }) {
         }}
       >
         <Row>
-          <Col span={8} style={{ padding: '0 20px' }}>
+          <Col span={8}>
             <h2 style={{ backgroundColor: '#cae4db', textAlign: 'center' }}>
               ORDERS DETAILS
             </h2>
@@ -55,7 +55,7 @@ function OrdersTable({ taom, orders, id }) {
               style={{ margineft: '25px' }}
             />
           </Col>
-          <Col span={8} style={{ padding: '0 20px' }}>
+          <Col span={8}>
             <div>
               <h2 style={{ backgroundColor: '#cae4db', textAlign: 'center' }}>
                 ORDERS STATUS
@@ -162,7 +162,7 @@ function OrdersTable({ taom, orders, id }) {
               )}
             </Timeline>
           </Col>
-          <Col span={8} style={{ padding: '0 20px' }}>
+          <Col span={8}>
             <h2 style={{ backgroundColor: '#cae4db', textAlign: 'center' }}>
               SMTH TABLE😉
             </h2>

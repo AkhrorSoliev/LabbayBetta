@@ -1,6 +1,10 @@
 import React from 'react'
-import { Menu, Input, Image } from 'antd'
-import { CheckOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import { Menu, Input, Image, Switch } from 'antd'
+import {
+  CheckOutlined,
+  PlusCircleOutlined,
+  PlusCircleTwoTone,
+} from '@ant-design/icons'
 
 const { SubMenu } = Menu
 const { TextArea } = Input
@@ -8,6 +12,10 @@ const { TextArea } = Input
 function Category() {
   const handleClick = (e) => {
     console.log('click ', e)
+  }
+
+  function onChange(checked) {
+    console.log(`switch to ${checked}`)
   }
 
   return (
@@ -58,8 +66,44 @@ function Category() {
           </div>
         </div>
         <div style={{ textAlign: 'center' }}>
+          <br />
           <p style={{ float: 'left', margin: '5px' }}>Ta'rifi</p>
           <TextArea rows={2} style={{ width: '100%' }} />
+        </div>
+        <p style={{ visibility: 'hidden', margin: '' }}>.</p>
+        <div style={{ display: 'flex', width: '100%' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              width: '50%',
+            }}
+          >
+            <p>Storeda ko'rsatish</p>
+            <Switch defaultChecked onChange={onChange} />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              width: '50%',
+            }}
+          >
+            <p>Item qatorda ko'rstatish</p>
+            <Switch defaultChecked onChange={onChange} />
+          </div>
+        </div>
+        <div style={{ padding: '10px' }}>
+          <div style={{}}>
+            <p>Modifier qo'shish</p>
+            <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+              <Input
+                placeholder="Categoriyani kiriting"
+                style={{ width: '60%' }}
+              />
+              <PlusCircleTwoTone style={{ fontSize: 25, cursor: 'pointer' }} />
+            </div>
+          </div>
         </div>
       </div>
     </div>
