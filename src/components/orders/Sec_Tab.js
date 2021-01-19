@@ -208,7 +208,12 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
         </Row>
       </div>
       <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
-        <div style={{ width: '65%' }}>
+        <div
+          style={{
+            width: '65%',
+            boxShadow: '2px 2px 10px 1px rgba(0, 0, 255, .2)',
+          }}
+        >
           <Table
             columns={columns}
             dataSource={costum}

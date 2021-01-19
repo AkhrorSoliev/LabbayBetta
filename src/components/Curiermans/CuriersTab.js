@@ -183,7 +183,14 @@ class CurierTab extends Component {
               </TabPane>
             </Tabs>
           </div>
-          <div style={{ width: '35%', marginTop: '50px', marginLeft: '5px' }}>
+          <div
+            style={{
+              width: '35%',
+              marginTop: '50px',
+              marginLeft: '5px',
+              boxShadow: 'rgba(0, 0, 255, 0.2) 2px 2px 10px 1px',
+            }}
+          >
             <CuriersInfo />
           </div>
         </div>
