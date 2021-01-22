@@ -73,6 +73,7 @@ function HistoryData({ id, orders }) {
               backgroundColor: '#30475e',
               color: 'white',
               textAlign: 'center',
+              borderRadius: '5px',
             }}
           >
             Buyurtmani qanbul qiluvchi
@@ -118,6 +119,7 @@ function HistoryData({ id, orders }) {
               backgroundColor: '#30475e',
               color: 'white',
               textAlign: 'center',
+              borderRadius: '5px',
             }}
           >
             Yetqazib berivuchi
@@ -145,6 +147,7 @@ function HistoryData({ id, orders }) {
               backgroundColor: '#30475e',
               color: 'white',
               textAlign: 'center',
+              borderRadius: '5px',
             }}
           >
             Qabul qiluvchi
