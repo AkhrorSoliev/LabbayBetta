@@ -15,7 +15,6 @@ import Deliveries from './orders/Deliveries'
 import { Menu } from 'antd'
 import {
   FieldTimeOutlined,
-  HomeOutlined,
   ShopOutlined,
   SkinOutlined,
   TeamOutlined,
@@ -67,9 +66,13 @@ function MiniDrawer({ getOrders, loading, user }) {
   return (
     <Router>
       <div style={{ display: 'flex', width: '100%' }}>
-        <div style={{ width: '20%' }}>
+        <div style={{ width: '18%' }}>
           <div>
-            <img src={logo} alt="logo" style={{ marginLeft: '10px' }} />
+            <img
+              src={logo}
+              alt="logo"
+              style={{ width: '100px', marginLeft: '80px' }}
+            />
           </div>
           <Menu
             onClick={handleClick1}
@@ -109,7 +112,7 @@ function MiniDrawer({ getOrders, loading, user }) {
           </Menu>
         </div>
 
-        <main style={{ width: '80%' }}>
+        <main style={{ width: '82%' }}>
           <div style={{ height: '60px', backgroundColor: '#5A57DC' }}>
             <div
               style={{

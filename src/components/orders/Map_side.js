@@ -14,10 +14,11 @@ const Map_side = ({ id, orders }) => {
       style={{
         height: '500px',
         width: '100%',
-        margin: '5px',
+        marginLeft: '7px',
+        boxShadow: 'box-shadow: rgba(0, 0, 255, 0.2) 2px 2px 10px 1px;',
       }}
     >
-      <div style={{ backgroundColor: '#222831', display: 'flex' }}>
+      <div style={{ backgroundColor: 'rgb(90, 87, 220)', display: 'flex' }}>
         <div
           style={{
             width: '25px',

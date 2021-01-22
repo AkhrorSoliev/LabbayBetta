@@ -225,7 +225,12 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
         </Row>
       </div>
       <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
-        <div style={{ width: '65%' }}>
+        <div
+          style={{
+            width: '65%',
+            boxShadow: 'rgba(0, 0, 255, 0.2) 2px 2px 10px 1px',
+          }}
+        >
           <Table
             columns={columns}
             dataSource={costum}
@@ -234,7 +239,12 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
             rowClassName={setRowClassName}
           />
         </div>
-        <div style={{ width: '35%' }}>
+        <div
+          style={{
+            width: '35%',
+            boxShadow: 'rgba(0, 0, 255, 0.2) 2px 2px 10px 1px',
+          }}
+        >
           {id ? (
             <HistoryData id={id}></HistoryData>
           ) : (

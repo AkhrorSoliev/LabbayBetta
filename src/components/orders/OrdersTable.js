@@ -36,11 +36,15 @@ const columns = [
 function OrdersTable({ taom, orders, id }) {
   const order = orders.filter((e) => e.Id == id)
   return (
-    <div style={{ width: '100%' }}>
+    <div
+      style={{
+        width: '100%',
+        boxShadow: '2px 2px 10px 1px rgba(0, 0, 255, .2)',
+      }}
+    >
       <div
         style={{
           width: '100%',
-          padding: '15px',
         }}
       >
         <Row>

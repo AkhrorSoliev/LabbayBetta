@@ -34,6 +34,11 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const [id, setId] = useState(null)
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [search1, setSearch1] = useState({
+    text: null,
+    query: '',
+  })
+
   useEffect(() => {
     getKur()
   }, [])
@@ -176,7 +181,12 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
             <h4 style={{ margin: '0 auto', visibility: 'hidden' }}>.</h4>
             <Search
               placeholder="input search text"
-              onSearch={onSearch}
+              onSearch={(value) =>
+                setSearch1({
+                  ...search1,
+                  query: value,
+                })
+              }
               enterButton
               style={{ width: '180px' }}
             />
@@ -208,7 +218,12 @@ const Index = ({ costum, getOrders, taom, getTaom, getKur }) => {
         </Row>
       </div>
       <div style={{ width: '100%', display: 'flex', paddingTop: '15px' }}>
-        <div style={{ width: '65%' }}>
+        <div
+          style={{
+            width: '65%',
+            boxShadow: '2px 2px 10px 1px rgba(0, 0, 255, .2)',
+          }}
+        >
           <Table
             columns={columns}
             dataSource={costum}
